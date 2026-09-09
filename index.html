@@ -234,7 +234,7 @@
       .lesson p { margin: 0; color: var(--brown); font-size: 12px; line-height: 1.5; }
       .lesson.current p { color: #d7cbc5; }
 
-      .materials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+      .materials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
 
       .material {
         display: flex;
@@ -282,6 +282,7 @@
         justify-content: space-between;
         margin-top: 48px;
         margin-bottom: 16px;
+        scroll-margin-top: 24px;
       }
 
       .prompt-heading h3 { margin: 0; font-size: 25px; letter-spacing: -0.045em; }
@@ -419,9 +420,10 @@
             <div class="materials">
               <article class="material"><span class="material-icon">XLSX</span><h3>실습용 엑셀 파일</h3><p>데이터 구조 확인부터 분석과 시각화까지 함께 진행할 실습용 원본 파일입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
               <article class="material"><span class="material-icon">PDF</span><h3>강의자료 PDF</h3><p>강의 내용과 실습 순서, 주요 프롬프트를 정리한 교육생용 자료입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+              <article class="material"><span class="material-icon">PROMPT</span><h3>실습 프롬프트</h3><p>데이터 확인부터 분석과 차트 생성까지 단계별로 사용할 프롬프트 모음입니다.</p><button class="pending" type="button" disabled>프롬프트 준비 중</button></article>
             </div>
 
-            <div class="prompt-heading">
+            <div class="prompt-heading" id="prompts">
               <h3>실습 프롬프트</h3>
               <p>프롬프트가 준비되면 각 항목의 버튼으로 바로 복사할 수 있습니다.</p>
             </div>
