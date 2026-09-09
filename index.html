@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="생성형 AI로 엑셀과 CSV를 정리하고 분석해 이해하기 쉬운 차트와 인사이트로 표현하는 실습 강의입니다." />
-    <title>생성형 AI를 활용한 엑셀 데이터 분석과 시각화</title>
+    <meta name="description" content="생성형 AI 실전 마스터 과정 제7기 4강, 엑셀 파일 하나로 끝내는 AI 데이터 분석·시각화 실전 자료실입니다." />
+    <title>4강 실습 자료실 | 생성형 AI 실전 마스터 과정</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root {
         --cream: #fff8ec;
-        --cream-deep: #f7e8d2;
+        --paper: #fffdf8;
         --apricot: #f4a261;
-        --tangerine: #e66a38;
-        --cocoa: #3f2c25;
-        --brown: #765d52;
-        --sage: #59786b;
-        --white: #fffdf9;
-        --line: rgba(63, 44, 37, 0.15);
-        --shadow: rgba(82, 48, 29, 0.14);
+        --orange: #e76536;
+        --cocoa: #3c2a24;
+        --brown: #725b51;
+        --sage: #58786b;
+        --sage-soft: #dce7df;
+        --line: rgba(60, 42, 36, 0.14);
+        --shadow: rgba(88, 53, 33, 0.13);
       }
 
       * { box-sizing: border-box; }
@@ -34,60 +34,32 @@
       }
 
       a { color: inherit; }
+      button { font: inherit; }
 
-      .page {
-        position: relative;
-        min-height: 100svh;
-        overflow: hidden;
-        isolation: isolate;
-      }
+      .page { position: relative; overflow: hidden; isolation: isolate; }
 
       .page::before {
         position: absolute;
         z-index: -2;
-        inset: 0;
+        inset: 0 0 auto;
+        height: 850px;
         background:
-          radial-gradient(circle at 78% 15%, rgba(244, 162, 97, 0.3), transparent 31rem),
-          radial-gradient(circle at 10% 90%, rgba(89, 120, 107, 0.12), transparent 28rem);
+          radial-gradient(circle at 79% 12%, rgba(244, 162, 97, 0.3), transparent 30rem),
+          radial-gradient(circle at 6% 70%, rgba(88, 120, 107, 0.12), transparent 26rem);
         content: "";
       }
 
-      .page::after {
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        right: 0;
-        width: 46%;
-        height: 100%;
-        background-image:
-          linear-gradient(var(--line) 1px, transparent 1px),
-          linear-gradient(90deg, var(--line) 1px, transparent 1px);
-        background-size: 42px 42px;
-        mask-image: linear-gradient(to left, black, transparent);
-        content: "";
-        opacity: 0.5;
-      }
-
-      .nav,
-      .hero {
-        width: min(1180px, calc(100% - 48px));
-        margin-inline: auto;
-      }
+      .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
 
       .nav {
         display: flex;
+        gap: 24px;
         align-items: center;
         justify-content: space-between;
-        padding-block: 26px;
+        padding-block: 24px;
       }
 
-      .brand {
-        display: inline-flex;
-        gap: 11px;
-        align-items: center;
-        font-weight: 700;
-        letter-spacing: -0.035em;
-      }
+      .brand { display: inline-flex; gap: 11px; align-items: center; font-weight: 700; letter-spacing: -0.035em; }
 
       .brand-mark {
         display: grid;
@@ -102,345 +74,357 @@
         box-shadow: 3px 3px 0 var(--apricot);
       }
 
-      .brand-mark i { border-radius: 2px; background: var(--white); }
+      .brand-mark i { border-radius: 2px; background: var(--paper); }
 
-      .nav-tag {
-        padding: 7px 11px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(255, 253, 249, 0.55);
+      .nav-link {
         color: var(--brown);
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 0.08em;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
       }
+
+      .nav-link:hover { color: var(--orange); }
 
       .hero {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(420px, 0.85fr);
-        gap: clamp(52px, 7vw, 92px);
+        grid-template-columns: minmax(0, 1fr) minmax(390px, 0.82fr);
+        gap: clamp(48px, 7vw, 92px);
         align-items: center;
-        min-height: calc(100svh - 90px);
-        padding-block: 56px 90px;
+        min-height: 680px;
+        padding-block: 64px 92px;
       }
 
-      .eyebrow {
+      .course-label {
         display: flex;
         gap: 10px;
         align-items: center;
-        margin: 0 0 23px;
-        color: var(--tangerine);
+        margin: 0 0 20px;
+        color: var(--orange);
         font-family: "IBM Plex Mono", monospace;
         font-size: 12px;
         font-weight: 600;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
       }
 
-      .eyebrow::before { width: 28px; height: 2px; background: currentColor; content: ""; }
+      .course-label::before { width: 29px; height: 2px; background: currentColor; content: ""; }
 
       h1 {
-        max-width: 680px;
+        max-width: 690px;
         margin: 0;
         font-family: "Black Han Sans", sans-serif;
-        font-size: clamp(48px, 5.5vw, 76px);
+        font-size: clamp(46px, 5.4vw, 75px);
         font-weight: 400;
-        line-height: 1.02;
+        line-height: 1.03;
         letter-spacing: -0.055em;
         word-break: keep-all;
       }
 
-      h1 .highlight { position: relative; display: inline-block; color: var(--tangerine); }
-
-      h1 .highlight::after {
-        position: absolute;
-        z-index: -1;
-        right: -0.06em;
-        bottom: -0.02em;
-        left: -0.03em;
-        height: 0.18em;
-        border-radius: 50%;
-        background: var(--apricot);
-        content: "";
-        opacity: 0.35;
-        transform: rotate(-1.5deg);
-      }
+      h1 em { color: var(--orange); font-style: normal; }
 
       .lead {
-        max-width: 610px;
-        margin: 27px 0 0;
+        max-width: 660px;
+        margin: 26px 0 0;
         color: var(--brown);
-        font-size: clamp(18px, 1.7vw, 22px);
+        font-size: clamp(17px, 1.65vw, 21px);
         font-weight: 600;
-        line-height: 1.65;
-        letter-spacing: -0.03em;
+        line-height: 1.7;
+        letter-spacing: -0.025em;
         word-break: keep-all;
       }
 
-      .audience {
-        display: flex;
-        gap: 9px;
-        align-items: center;
-        margin: 18px 0 0;
+      .meta { display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0 0; padding: 0; list-style: none; }
+
+      .meta li {
+        padding: 7px 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 253, 248, 0.68);
         color: var(--brown);
-        font-size: 14px;
-        line-height: 1.6;
-        word-break: keep-all;
+        font-size: 12px;
+        font-weight: 600;
       }
 
-      .audience::before {
-        flex: 0 0 auto;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--sage);
-        box-shadow: 0 0 0 4px rgba(89, 120, 107, 0.14);
-        content: "";
-      }
+      .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 31px; }
 
-      .cta {
+      .button {
         display: inline-flex;
-        gap: 15px;
+        gap: 12px;
         align-items: center;
         justify-content: center;
-        margin-top: 32px;
-        padding: 16px 23px 16px 25px;
+        min-height: 54px;
+        padding: 14px 21px;
         border: 2px solid var(--cocoa);
         border-radius: 10px;
         background: var(--cocoa);
-        color: var(--white);
-        box-shadow: 6px 6px 0 var(--apricot);
+        color: var(--paper);
+        box-shadow: 5px 5px 0 var(--apricot);
         font-weight: 700;
         text-decoration: none;
-        transition: box-shadow 180ms ease, transform 180ms ease;
+        transition: box-shadow 160ms ease, transform 160ms ease;
       }
 
-      .cta::after { content: "↘"; font-family: "IBM Plex Mono", monospace; font-size: 20px; line-height: 1; }
-      .cta:hover { box-shadow: 3px 3px 0 var(--apricot); transform: translate(3px, 3px); }
-      .cta:focus-visible { outline: 4px solid rgba(230, 106, 56, 0.32); outline-offset: 5px; }
+      .button.secondary { background: transparent; color: var(--cocoa); box-shadow: none; }
+      .button:hover { box-shadow: 2px 2px 0 var(--apricot); transform: translate(3px, 3px); }
+      .button.secondary:hover { background: rgba(255, 255, 255, 0.55); box-shadow: none; }
+      .button:focus-visible, .nav-link:focus-visible { outline: 4px solid rgba(231, 101, 54, 0.3); outline-offset: 5px; }
 
-      .workbook {
+      .position-card {
         position: relative;
-        padding: 18px 18px 20px;
-        border: 1px solid rgba(63, 44, 37, 0.18);
+        padding: 27px;
+        border: 1px solid var(--line);
         border-radius: 24px;
-        background: rgba(255, 253, 249, 0.92);
-        box-shadow: 0 28px 80px var(--shadow), 9px 9px 0 var(--cream-deep);
-        transform: rotate(1.2deg);
+        background: rgba(255, 253, 248, 0.91);
+        box-shadow: 0 28px 70px var(--shadow), 9px 9px 0 #f3dfc4;
+        transform: rotate(1deg);
       }
 
-      .workbook-bar { display: flex; gap: 7px; align-items: center; padding: 0 3px 15px; }
-      .workbook-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--cream-deep); }
-      .workbook-bar i:first-child { background: var(--tangerine); }
-      .workbook-bar i:nth-child(2) { background: var(--apricot); }
-      .workbook-bar i:nth-child(3) { background: var(--sage); }
-
-      .file-name {
-        margin-left: auto;
-        color: var(--brown);
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 11px;
-      }
-
-      .sheet {
-        display: grid;
-        grid-template-columns: 36px repeat(4, 1fr);
-        border-top: 1px solid var(--line);
-        border-left: 1px solid var(--line);
-        overflow: hidden;
-      }
-
-      .cell {
-        min-width: 0;
-        height: 39px;
-        padding: 10px 8px;
-        border-right: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        color: var(--brown);
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-
-      .cell.head,
-      .cell.row { background: var(--cream); color: var(--cocoa); font-weight: 600; text-align: center; }
-      .cell.active { background: rgba(89, 120, 107, 0.14); box-shadow: inset 0 0 0 2px var(--sage); }
-
-      .analysis-card {
-        position: relative;
-        width: 90%;
-        margin: -18px auto 0;
-        padding: 22px;
-        border-radius: 15px;
-        background: var(--cocoa);
-        color: var(--white);
-        box-shadow: 0 18px 40px rgba(63, 44, 37, 0.23);
-        transform: rotate(-2.5deg);
-      }
-
-      .analysis-card::before {
+      .position-card::before {
         position: absolute;
-        top: -11px;
-        right: 27px;
-        padding: 5px 9px;
-        border-radius: 5px;
+        top: -13px;
+        right: 26px;
+        padding: 6px 10px;
+        border-radius: 6px;
         background: var(--apricot);
-        color: var(--cocoa);
-        content: "AI 분석 완료";
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
-        font-weight: 600;
-      }
-
-      .analysis-label {
-        margin: 0 0 13px;
-        color: #ffd7b5;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
-        letter-spacing: 0.08em;
-      }
-
-      .analysis-row { display: flex; gap: 16px; align-items: flex-end; }
-
-      .bars {
-        display: flex;
-        flex: 1;
-        gap: 7px;
-        align-items: flex-end;
-        height: 72px;
-        padding-top: 8px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-      }
-
-      .bars i { flex: 1; border-radius: 4px 4px 0 0; background: var(--apricot); }
-      .bars i:nth-child(1) { height: 38%; opacity: 0.55; }
-      .bars i:nth-child(2) { height: 56%; opacity: 0.68; }
-      .bars i:nth-child(3) { height: 48%; opacity: 0.78; }
-      .bars i:nth-child(4) { height: 82%; }
-      .bars i:nth-child(5) { height: 68%; opacity: 0.88; }
-
-      .insight { flex: 0 0 47%; }
-      .insight strong { display: block; margin-bottom: 5px; font-size: 16px; letter-spacing: -0.035em; }
-      .insight span { color: #d7cbc4; font-size: 11px; line-height: 1.55; }
-
-      .features {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-        scroll-margin-top: 24px;
-      }
-
-      .feature { padding: 21px 22px; border-top: 1px solid var(--line); }
-
-      .feature-label {
-        margin: 0 0 8px;
-        color: var(--tangerine);
+        content: "현재 강의";
         font-family: "IBM Plex Mono", monospace;
         font-size: 11px;
         font-weight: 600;
-        letter-spacing: 0.07em;
       }
 
-      .feature h2 { margin: 0 0 7px; font-size: 18px; letter-spacing: -0.04em; }
-      .feature p { margin: 0; color: var(--brown); font-size: 13px; line-height: 1.65; word-break: keep-all; }
+      .position-kicker { margin: 0; color: var(--sage); font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; }
+      .position-number { margin: 9px 0 0; font-family: "Black Han Sans", sans-serif; font-size: 106px; line-height: 0.9; letter-spacing: -0.07em; }
+      .position-number span { color: var(--orange); }
+      .position-title { margin: 16px 0 0; font-size: 22px; line-height: 1.45; letter-spacing: -0.04em; word-break: keep-all; }
+      .position-info { display: grid; grid-template-columns: 70px 1fr; gap: 6px 14px; margin: 23px 0 0; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; }
+      .position-info dt { color: var(--brown); }
+      .position-info dd { margin: 0; font-weight: 600; }
+
+      .section { padding-block: 92px; scroll-margin-top: 12px; }
+      .section.alt { background: var(--paper); }
+      .section-heading { display: grid; grid-template-columns: 0.6fr 1fr; gap: 34px; align-items: end; margin-bottom: 38px; }
+      .section-eyebrow { margin: 0 0 10px; color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.09em; }
+      .section h2 { margin: 0; font-size: clamp(31px, 4vw, 48px); line-height: 1.18; letter-spacing: -0.055em; word-break: keep-all; }
+      .section-intro { margin: 0; color: var(--brown); font-size: 15px; line-height: 1.8; word-break: keep-all; }
+
+      .curriculum { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+
+      .lesson {
+        display: grid;
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+        min-height: 108px;
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: var(--cream);
+      }
+
+      .lesson.current {
+        border-color: var(--orange);
+        background: var(--cocoa);
+        color: var(--paper);
+        box-shadow: 5px 5px 0 var(--apricot);
+      }
+
+      .lesson-count { display: block; color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; }
+      .lesson-date { display: block; margin-top: 5px; color: var(--brown); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+      .lesson.current .lesson-date { color: #d7cbc5; }
+      .lesson h3 { margin: 0 0 6px; font-size: 16px; line-height: 1.45; letter-spacing: -0.035em; word-break: keep-all; }
+      .lesson p { margin: 0; color: var(--brown); font-size: 12px; line-height: 1.5; }
+      .lesson.current p { color: #d7cbc5; }
+
+      .materials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+
+      .material {
+        display: flex;
+        min-height: 230px;
+        flex-direction: column;
+        padding: 24px;
+        border: 1px dashed rgba(60, 42, 36, 0.27);
+        border-radius: 18px;
+        background: var(--cream);
+      }
+
+      .material-icon {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border-radius: 11px;
+        background: var(--sage-soft);
+        color: var(--sage);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .material h3 { margin: 20px 0 7px; font-size: 18px; letter-spacing: -0.04em; }
+      .material p { margin: 0; color: var(--brown); font-size: 13px; line-height: 1.65; word-break: keep-all; }
+
+      .pending {
+        align-self: flex-start;
+        margin-top: auto;
+        padding: 7px 10px;
+        border: 0;
+        border-radius: 7px;
+        background: #eadfd2;
+        color: #8a7569;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: not-allowed;
+      }
+
+      .prompt-preview { margin-top: 18px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; }
+      .prompt-row { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 20px 22px; background: var(--cream); }
+      .prompt-row + .prompt-row { border-top: 1px solid var(--line); }
+      .prompt-index { color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; }
+      .prompt-row h3 { margin: 0 0 4px; font-size: 15px; letter-spacing: -0.03em; }
+      .prompt-row p { margin: 0; color: var(--brown); font-size: 12px; }
+
+      .organizers {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 36px;
+        align-items: start;
+        padding-block: 54px 65px;
+        border-top: 1px solid var(--line);
+      }
+
+      .organizers strong { display: block; margin-bottom: 8px; font-size: 15px; }
+      .organizers p { margin: 0; color: var(--brown); font-size: 12px; line-height: 1.8; word-break: keep-all; }
+      .disclaimer { padding: 17px 19px; border-radius: 12px; background: var(--sage-soft); color: #405d51 !important; }
 
       @media (max-width: 900px) {
-        .hero { grid-template-columns: 1fr; gap: 54px; padding-top: 44px; }
-        .hero-copy { max-width: 720px; }
-        .workbook { width: min(560px, 92%); margin-inline: auto; }
-        .features { margin-top: 8px; }
+        .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 48px; }
+        .position-card { width: min(540px, 94%); margin-inline: auto; }
+        .section-heading { grid-template-columns: 1fr; gap: 16px; }
       }
 
-      @media (max-width: 620px) {
-        .nav,
-        .hero { width: min(100% - 32px, 1180px); }
+      @media (max-width: 700px) {
+        .curriculum, .materials { grid-template-columns: 1fr; }
+        .organizers { grid-template-columns: 1fr; gap: 22px; }
+      }
+
+      @media (max-width: 560px) {
+        .wrap { width: min(100% - 32px, 1180px); }
         .nav { padding-block: 19px; }
-        .nav-tag { display: none; }
-        .brand { font-size: 14px; }
-        .hero { gap: 45px; padding-block: 42px 58px; }
-        h1 { font-size: clamp(43px, 13vw, 60px); }
-        .lead { margin-top: 23px; }
-        .audience { align-items: flex-start; }
-        .audience::before { margin-top: 7px; }
-        .cta { width: 100%; }
-        .workbook { width: 100%; padding: 13px; border-radius: 18px; transform: none; }
-        .sheet { grid-template-columns: 28px repeat(4, 1fr); }
-        .cell { height: 34px; padding: 9px 5px; font-size: 8px; }
-        .analysis-card { width: 94%; padding: 18px; transform: rotate(-1.5deg); }
-        .analysis-row { gap: 12px; }
-        .insight strong { font-size: 14px; }
-        .features { grid-template-columns: 1fr; gap: 0; }
-        .feature { padding-inline: 4px; }
+        .brand { font-size: 13px; }
+        .nav-link { display: none; }
+        .hero { gap: 52px; padding-block: 44px 70px; }
+        h1 { font-size: clamp(41px, 12.8vw, 58px); }
+        .actions { display: grid; }
+        .button { width: 100%; }
+        .position-card { width: 100%; padding: 23px; transform: none; }
+        .position-number { font-size: 86px; }
+        .section { padding-block: 72px; }
+        .lesson { grid-template-columns: 70px minmax(0, 1fr); gap: 13px; padding: 16px; }
+        .prompt-row { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; padding: 18px 16px; }
+        .prompt-row .pending { grid-column: 2; margin-top: 4px; }
       }
 
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
-        .cta { transition: none; }
+        .button { transition: none; }
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <header class="nav">
-        <div class="brand" aria-label="AI 데이터 클래스 홈">
+      <header class="nav wrap">
+        <div class="brand" aria-label="생성형 AI 실전 마스터 과정 홈">
           <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <span>AI 데이터 클래스</span>
+          <span>생성형 AI 실전 마스터 과정</span>
         </div>
-        <span class="nav-tag">NO CODE · HANDS-ON</span>
+        <a class="nav-link" href="#curriculum">10주 전체 강좌 보기 ↓</a>
       </header>
 
-      <main class="hero">
-        <section class="hero-copy" aria-labelledby="hero-title">
-          <p class="eyebrow">GENERATIVE AI × DATA</p>
-          <h1 id="hero-title">생성형 AI로<br />엑셀 데이터<br /><span class="highlight">분석과 시각화</span></h1>
-          <p class="lead">엑셀 파일을 올리고 질문하면, AI가 데이터를 분석하고 한눈에 보이는 그래프로 바꿔드립니다.</p>
-          <p class="audience">코딩이나 복잡한 수식 없이, 업무 데이터를 직접 정리하고 분석하고 시각화하는 과정을 체험합니다.</p>
-          <a class="cta" href="#features">강의 둘러보기</a>
+      <main>
+        <section class="hero wrap" aria-labelledby="hero-title">
+          <div>
+            <p class="course-label">제7기 정규과정 · 4강 실습 자료</p>
+            <h1 id="hero-title">엑셀 파일 하나로 끝내는<br /><em>AI 데이터 분석·시각화 실전</em></h1>
+            <p class="lead">엑셀 파일을 올리고 질문하면, AI가 데이터를 분석하고 한눈에 보이는 그래프로 바꿔드립니다.</p>
+            <ul class="meta" aria-label="강의 정보">
+              <li>2026. 10. 21.(수)</li>
+              <li>18:30–20:30</li>
+              <li>온·오프라인 병행</li>
+            </ul>
+            <div class="actions">
+              <a class="button" href="#materials">4강 실습 시작하기 ↓</a>
+              <a class="button secondary" href="#curriculum">전체 강좌 보기</a>
+            </div>
+          </div>
+
+          <aside class="position-card" aria-label="정규과정 중 현재 강의 위치">
+            <p class="position-kicker">10-WEEK MASTER COURSE</p>
+            <p class="position-number"><span>04</span> / 10</p>
+            <h2 class="position-title">전체 과정의 네 번째 시간,<br />업무 데이터를 직접 다루는 실습입니다.</h2>
+            <dl class="position-info">
+              <dt>강사</dt><dd>김숙명 소장</dd>
+              <dt>소속</dt><dd>디지털러닝연구소</dd>
+              <dt>과정</dt><dd>2026년 초거대 AI &amp; 생성테크 교육</dd>
+            </dl>
+          </aside>
         </section>
 
-        <section class="workbook" aria-label="엑셀 데이터가 분석 결과로 바뀌는 예시">
-          <div class="workbook-bar">
-            <i></i><i></i><i></i>
-            <span class="file-name">work_data.xlsx</span>
-          </div>
-          <div class="sheet" aria-hidden="true">
-            <span class="cell head"></span><span class="cell head">A</span><span class="cell head">B</span><span class="cell head">C</span><span class="cell head">D</span>
-            <span class="cell row">1</span><span class="cell">월</span><span class="cell">매출</span><span class="cell">비용</span><span class="cell">이익</span>
-            <span class="cell row">2</span><span class="cell">JAN</span><span class="cell">24.8M</span><span class="cell">16.2M</span><span class="cell">8.6M</span>
-            <span class="cell row">3</span><span class="cell">FEB</span><span class="cell">28.1M</span><span class="cell">17.4M</span><span class="cell active">10.7M</span>
-            <span class="cell row">4</span><span class="cell">MAR</span><span class="cell">31.6M</span><span class="cell">18.1M</span><span class="cell">13.5M</span>
-          </div>
-          <div class="analysis-card">
-            <p class="analysis-label">QUICK INSIGHT</p>
-            <div class="analysis-row">
-              <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="insight">
-                <strong>이익 25.8% 증가</strong>
-                <span>3월 매출 상승이 전체 수익 개선을 이끌었습니다.</span>
+        <section class="section alt" id="curriculum">
+          <div class="wrap">
+            <div class="section-heading">
+              <div>
+                <p class="section-eyebrow">FULL CURRICULUM</p>
+                <h2>10주 과정에서<br />지금은 4강입니다</h2>
               </div>
+              <p class="section-intro">AI 트렌드부터 글쓰기, 영상, 데이터 분석, 업무 자동화와 에이전트 구축까지 이어지는 정규과정입니다. 4강에서는 엑셀 파일을 실제 업무 인사이트로 바꾸는 과정을 실습합니다.</p>
+            </div>
+
+            <div class="curriculum">
+              <article class="lesson"><div><span class="lesson-count">1강</span><time class="lesson-date">09.30</time></div><div><h3>AI/AX 트렌드 이해 및 전략</h3><p>정규진 · QM&amp;E 이노베이션 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">2강</span><time class="lesson-date">10.07</time></div><div><h3>AI 글쓰기와 에세이/자서전 제작 출판</h3><p>이신우 · 미래미디어연구소 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">3강</span><time class="lesson-date">10.14</time></div><div><h3>AI 홍보 영상 제작</h3><p>이승주 · AI크리에이팅연구소 대표</p></div></article>
+              <article class="lesson current" aria-current="step"><div><span class="lesson-count">4강 · 현재</span><time class="lesson-date">10.21</time></div><div><h3>엑셀 파일 하나로 끝내는 AI 데이터 분석·시각화 실전</h3><p>김숙명 · 디지털러닝연구소 소장</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">5강</span><time class="lesson-date">10.28</time></div><div><h3>AI 이미지와 브랜딩 콘텐츠 제작</h3><p>김윤선 · 해피에듀아이 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">6강</span><time class="lesson-date">11.04</time></div><div><h3>비즈니스 문서 및 PPT 발표 자료 실전</h3><p>김유성 · AI콘텐츠마케팅연구소 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">7강</span><time class="lesson-date">11.11</time></div><div><h3>챗봇/스킬 및 업무 자동화</h3><p>고구환 · 동북아공동체ICT포럼 원장</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">8강</span><time class="lesson-date">11.18</time></div><div><h3>바이브코딩 및 AI 에이전트 입문</h3><p>윤성임 · 건양사이버대학교 겸임교수</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">9강</span><time class="lesson-date">11.25</time></div><div><h3>AI 에이전트 구축 실전</h3><p>최규문 · 소셜네트워크코리아 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">10강</span><time class="lesson-date">12.02</time></div><div><h3>프로젝트 및 자서전 발표 / 수료</h3><p>고구환 · 동북아공동체ICT포럼 원장</p></div></article>
             </div>
           </div>
         </section>
 
-        <section class="features" id="features" aria-label="강의 소개">
-          <article class="feature">
-            <p class="feature-label">CHECK</p>
-            <h2>데이터부터 확인합니다</h2>
-            <p>엑셀과 CSV의 구조를 살펴보고 누락, 중복, 형식 오류 등 데이터 품질을 점검합니다.</p>
-          </article>
-          <article class="feature">
-            <p class="feature-label">ASK</p>
-            <h2>말로 질문하고 분석합니다</h2>
-            <p>자연어로 궁금한 점을 질문해 업무에 필요한 핵심 지표와 숨은 패턴을 찾습니다.</p>
-          </article>
-          <article class="feature">
-            <p class="feature-label">SHOW</p>
-            <h2>차트로 이해하고 표현합니다</h2>
-            <p>분석 결과를 누구나 이해하기 쉬운 차트와 명확한 인사이트로 바꿉니다.</p>
-          </article>
+        <section class="section" id="materials">
+          <div class="wrap">
+            <div class="section-heading">
+              <div>
+                <p class="section-eyebrow">CLASS MATERIALS</p>
+                <h2>4강 실습 자료실</h2>
+              </div>
+              <p class="section-intro">강의 전 자료가 준비되면 이곳에서 바로 내려받을 수 있습니다. 지금은 자료 종류와 위치를 미리 안내합니다.</p>
+            </div>
+
+            <div class="materials">
+              <article class="material"><span class="material-icon">XLSX</span><h3>예제 엑셀 파일</h3><p>데이터 구조 확인과 기초 분석에 사용할 실습용 원본 파일입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+              <article class="material"><span class="material-icon">CSV</span><h3>예제 CSV 파일</h3><p>AI 도구에 업로드해 정리와 분석 과정을 연습할 표 형식 데이터입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+              <article class="material"><span class="material-icon">PDF</span><h3>4강 실습 안내서</h3><p>실습 순서, 주의사항과 결과 검증 방법을 담을 수강생용 안내서입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+            </div>
+
+            <div class="prompt-preview" aria-label="복사용 실습 프롬프트 준비 목록">
+              <div class="prompt-row"><span class="prompt-index">P-01</span><div><h3>데이터 구조와 품질 확인</h3><p>열의 의미, 누락값, 중복값과 형식 오류를 확인하는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
+              <div class="prompt-row"><span class="prompt-index">P-02</span><div><h3>핵심 지표와 패턴 분석</h3><p>업무 질문으로 중요한 수치와 변화의 원인을 찾는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
+              <div class="prompt-row"><span class="prompt-index">P-03</span><div><h3>차트와 인사이트 만들기</h3><p>분석 결과를 적절한 시각화와 쉬운 설명으로 바꾸는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
+            </div>
+          </div>
         </section>
       </main>
+
+      <footer class="organizers wrap">
+        <div>
+          <strong>생성형 AI 실전 마스터 과정 (10주 완성)</strong>
+          <p>주최·주관: 한국디지털융합진흥원, 동북아공동체ICT포럼<br />후원: 한국IT전문가협회, 디지털융합교육원, 한국정보통신공사협회 · 협찬: 전자신문</p>
+        </div>
+        <p class="disclaimer">본 페이지는 정규과정 4강의 원활한 실습을 위해 강사가 제작한 보조 자료 페이지입니다. 공식 과정 일정과 운영 안내는 주최·주관 기관의 공지를 우선합니다.</p>
+      </footer>
     </div>
   </body>
 </html>
