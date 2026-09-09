@@ -59,7 +59,10 @@
         padding-block: 24px;
       }
 
-      .brand { display: inline-flex; gap: 11px; align-items: center; font-weight: 700; letter-spacing: -0.035em; }
+      .brand { display: inline-flex; gap: 11px; align-items: center; letter-spacing: -0.035em; }
+      .brand-copy { display: grid; gap: 2px; }
+      .brand-title { font-size: 14px; font-weight: 700; }
+      .brand-subtitle { color: var(--brown); font-size: 10px; font-weight: 500; letter-spacing: -0.02em; }
 
       .brand-mark {
         display: grid;
@@ -205,6 +208,20 @@
       .section-eyebrow { margin: 0 0 10px; color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.09em; }
       .section h2 { margin: 0; font-size: clamp(31px, 4vw, 48px); line-height: 1.18; letter-spacing: -0.055em; word-break: keep-all; }
       .section-intro { margin: 0; color: var(--brown); font-size: 15px; line-height: 1.8; word-break: keep-all; }
+      .section-summary { display: grid; gap: 13px; }
+      .course-period {
+        display: inline-flex;
+        align-items: center;
+        justify-self: start;
+        margin: 0;
+        padding: 9px 12px;
+        border-radius: 8px;
+        background: var(--sage-soft);
+        color: #405d51;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+      }
 
       .curriculum { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
 
@@ -261,6 +278,11 @@
 
       .material h3 { margin: 20px 0 7px; font-size: 18px; letter-spacing: -0.04em; }
       .material p { margin: 0; color: var(--brown); font-size: 13px; line-height: 1.65; word-break: keep-all; }
+      .material .material-number { margin-top: 18px; color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; }
+      .material .material-number + h3 { margin-top: 5px; }
+
+      .heading-with-count { display: flex; gap: 12px; align-items: center; }
+      .item-count { padding: 6px 9px; border-radius: 999px; background: var(--apricot); color: var(--cocoa); font-family: "IBM Plex Mono", monospace; font-size: 10px; font-weight: 600; white-space: nowrap; }
 
       .pending {
         align-self: flex-start;
@@ -306,6 +328,7 @@
       .organizers strong { display: block; margin-bottom: 8px; font-size: 15px; }
       .organizers p { margin: 0; color: var(--brown); font-size: 12px; line-height: 1.8; word-break: keep-all; }
       .disclaimer { padding: 17px 19px; border-radius: 12px; background: var(--sage-soft); color: #405d51 !important; }
+      [hidden] { display: none !important; }
 
       @media (max-width: 900px) {
         .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 48px; }
@@ -321,7 +344,8 @@
       @media (max-width: 560px) {
         .wrap { width: min(100% - 32px, 1180px); }
         .nav { padding-block: 19px; }
-        .brand { font-size: 13px; }
+        .brand-title { font-size: 13px; }
+        .brand-subtitle { font-size: 9px; }
         .nav-link { display: none; }
         .hero { gap: 52px; padding-block: 44px 70px; }
         h1 { font-size: clamp(41px, 12.8vw, 58px); }
@@ -348,7 +372,10 @@
       <header class="nav wrap">
         <div class="brand" aria-label="생성형 AI 실전 마스터 과정 홈">
           <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <span>생성형 AI 실전 마스터 과정</span>
+          <span class="brand-copy">
+            <span class="brand-title">생성형 AI 실전 마스터 과정</span>
+            <span class="brand-subtitle">2026 초거대 AI &amp; 생성테크 교육 · 제7기</span>
+          </span>
         </div>
         <a class="nav-link" href="#curriculum">10주 전체 강좌 보기 ↓</a>
       </header>
@@ -389,20 +416,23 @@
                 <p class="section-eyebrow">FULL CURRICULUM</p>
                 <h2>10주 과정에서<br />지금은 4강입니다</h2>
               </div>
-              <p class="section-intro">AI 트렌드부터 글쓰기, 영상, 데이터 분석, 업무 자동화와 에이전트 구축까지 이어지는 정규과정입니다. 4강에서는 엑셀 파일을 실제 업무 인사이트로 바꾸는 과정을 실습합니다.</p>
+              <div class="section-summary">
+                <p class="course-period">2026. 09.30(수)–12.02(수) · 매주 수요일 18:30–20:30 · 총 10회</p>
+                <p class="section-intro">AI 트렌드부터 글쓰기, 영상, 데이터 분석, 업무 자동화와 에이전트 구축까지 이어지는 정규과정입니다. 4강에서는 엑셀 파일을 실제 업무 인사이트로 바꾸는 과정을 실습합니다.</p>
+              </div>
             </div>
 
             <div class="curriculum">
-              <article class="lesson"><div><span class="lesson-count">1강</span><time class="lesson-date">09.30</time></div><div><h3>AI/AX 트렌드 이해 및 전략</h3><p>정규진 · QM&amp;E 이노베이션 대표</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">2강</span><time class="lesson-date">10.07</time></div><div><h3>AI 글쓰기와 에세이/자서전 제작 출판</h3><p>이신우 · 미래미디어연구소 대표</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">3강</span><time class="lesson-date">10.14</time></div><div><h3>AI 홍보 영상 제작</h3><p>이승주 · AI크리에이팅연구소 대표</p></div></article>
-              <article class="lesson current" aria-current="step"><div><span class="lesson-count">4강 · 현재</span><time class="lesson-date">10.21</time></div><div><h3>엑셀 파일 하나로 끝내는 AI 데이터 분석·시각화 실전</h3><p>김숙명 · 디지털러닝연구소 소장</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">5강</span><time class="lesson-date">10.28</time></div><div><h3>AI 이미지와 브랜딩 콘텐츠 제작</h3><p>김윤선 · 해피에듀아이 대표</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">6강</span><time class="lesson-date">11.04</time></div><div><h3>비즈니스 문서 및 PPT 발표 자료 실전</h3><p>김유성 · AI콘텐츠마케팅연구소 대표</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">7강</span><time class="lesson-date">11.11</time></div><div><h3>챗봇/스킬 및 업무 자동화</h3><p>고구환 · 동북아공동체ICT포럼 원장</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">8강</span><time class="lesson-date">11.18</time></div><div><h3>바이브코딩 및 AI 에이전트 입문</h3><p>윤성임 · 건양사이버대학교 겸임교수</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">9강</span><time class="lesson-date">11.25</time></div><div><h3>AI 에이전트 구축 실전</h3><p>최규문 · 소셜네트워크코리아 대표</p></div></article>
-              <article class="lesson"><div><span class="lesson-count">10강</span><time class="lesson-date">12.02</time></div><div><h3>프로젝트 및 자서전 발표 / 수료</h3><p>고구환 · 동북아공동체ICT포럼 원장</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">1강</span><time class="lesson-date">09.30(수)</time></div><div><h3>AI/AX 트렌드 이해 및 전략</h3><p>정규진 · QM&amp;E 이노베이션 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">2강</span><time class="lesson-date">10.07(수)</time></div><div><h3>AI 글쓰기와 에세이/자서전 제작 출판</h3><p>이신우 · 미래미디어연구소 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">3강</span><time class="lesson-date">10.14(수)</time></div><div><h3>AI 홍보 영상 제작</h3><p>이승주 · AI크리에이팅연구소 대표</p></div></article>
+              <article class="lesson current" aria-current="step"><div><span class="lesson-count">4강 · 현재</span><time class="lesson-date">10.21(수)</time></div><div><h3>엑셀 파일 하나로 끝내는 AI 데이터 분석·시각화 실전</h3><p>김숙명 · 디지털러닝연구소 소장</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">5강</span><time class="lesson-date">10.28(수)</time></div><div><h3>AI 이미지와 브랜딩 콘텐츠 제작</h3><p>김윤선 · 해피에듀아이 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">6강</span><time class="lesson-date">11.04(수)</time></div><div><h3>비즈니스 문서 및 PPT 발표 자료 실전</h3><p>김유성 · AI콘텐츠마케팅연구소 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">7강</span><time class="lesson-date">11.11(수)</time></div><div><h3>챗봇/스킬 및 업무 자동화</h3><p>고구환 · 동북아공동체ICT포럼 원장</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">8강</span><time class="lesson-date">11.18(수)</time></div><div><h3>바이브코딩 및 AI 에이전트 입문</h3><p>윤성임 · 건양사이버대학교 겸임교수</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">9강</span><time class="lesson-date">11.25(수)</time></div><div><h3>AI 에이전트 구축 실전</h3><p>최규문 · 소셜네트워크코리아 대표</p></div></article>
+              <article class="lesson"><div><span class="lesson-count">10강</span><time class="lesson-date">12.02(수)</time></div><div><h3>프로젝트 및 자서전 발표 / 수료</h3><p>고구환 · 동북아공동체ICT포럼 원장</p></div></article>
             </div>
           </div>
         </section>
@@ -412,22 +442,22 @@
             <div class="section-heading">
               <div>
                 <p class="section-eyebrow">CLASS MATERIALS</p>
-                <h2>4강 실습 자료실</h2>
+                <div class="heading-with-count"><h2>4강 실습 자료실</h2><span class="item-count">총 3종</span></div>
               </div>
               <p class="section-intro">강의 전 자료가 준비되면 이곳에서 바로 내려받을 수 있습니다. 지금은 자료 종류와 위치를 미리 안내합니다.</p>
             </div>
 
             <div class="materials">
-              <article class="material"><span class="material-icon">XLSX</span><h3>실습용 엑셀 파일</h3><p>데이터 구조 확인부터 분석과 시각화까지 함께 진행할 실습용 원본 파일입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
-              <article class="material"><span class="material-icon">PDF</span><h3>강의자료 PDF</h3><p>강의 내용과 실습 순서, 주요 프롬프트를 정리한 교육생용 자료입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
-              <article class="material"><span class="material-icon">PROMPT</span><h3>실습 프롬프트</h3><p>데이터 확인부터 분석과 차트 생성까지 단계별로 사용할 프롬프트 모음입니다.</p><button class="pending" type="button" disabled>프롬프트 준비 중</button></article>
+              <article class="material"><span class="material-icon">XLSX</span><p class="material-number">자료 01</p><h3>실습용 엑셀 파일</h3><p>데이터 구조 확인부터 분석과 시각화까지 함께 진행할 실습용 원본 파일입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+              <article class="material"><span class="material-icon">PDF</span><p class="material-number">자료 02</p><h3>강의자료 PDF</h3><p>강의 내용과 실습 순서, 주요 프롬프트를 정리한 교육생용 자료입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+              <article class="material"><span class="material-icon">PROMPT</span><p class="material-number">자료 03</p><h3>실습 프롬프트</h3><p>데이터 확인부터 분석과 차트 생성까지 단계별로 사용할 프롬프트 모음입니다.</p><button class="pending" type="button" disabled>프롬프트 준비 중</button></article>
             </div>
 
-            <div class="prompt-heading" id="prompts">
+            <div class="prompt-heading" id="prompts" hidden>
               <h3>실습 프롬프트</h3>
               <p>프롬프트가 준비되면 각 항목의 버튼으로 바로 복사할 수 있습니다.</p>
             </div>
-            <div class="prompt-preview" aria-label="복사용 실습 프롬프트 준비 목록">
+            <div class="prompt-preview" aria-label="복사용 실습 프롬프트 준비 목록" hidden>
               <div class="prompt-row"><span class="prompt-index">P-01</span><div><h3>데이터 구조와 품질 확인</h3><p>열의 의미, 누락값, 중복값과 형식 오류를 확인하는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
               <div class="prompt-row"><span class="prompt-index">P-02</span><div><h3>핵심 지표와 패턴 분석</h3><p>업무 질문으로 중요한 수치와 변화의 원인을 찾는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
               <div class="prompt-row"><span class="prompt-index">P-03</span><div><h3>차트와 인사이트 만들기</h3><p>분석 결과를 적절한 시각화와 쉬운 설명으로 바꾸는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
