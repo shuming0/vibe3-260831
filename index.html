@@ -275,7 +275,18 @@
         cursor: not-allowed;
       }
 
-      .prompt-preview { margin-top: 18px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; }
+      .prompt-heading {
+        display: flex;
+        gap: 24px;
+        align-items: end;
+        justify-content: space-between;
+        margin-top: 48px;
+        margin-bottom: 16px;
+      }
+
+      .prompt-heading h3 { margin: 0; font-size: 25px; letter-spacing: -0.045em; }
+      .prompt-heading p { margin: 0; color: var(--brown); font-size: 13px; line-height: 1.65; word-break: keep-all; }
+      .prompt-preview { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; }
       .prompt-row { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 20px 22px; background: var(--cream); }
       .prompt-row + .prompt-row { border-top: 1px solid var(--line); }
       .prompt-index { color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; }
@@ -321,6 +332,8 @@
         .lesson { grid-template-columns: 70px minmax(0, 1fr); gap: 13px; padding: 16px; }
         .prompt-row { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; padding: 18px 16px; }
         .prompt-row .pending { grid-column: 2; margin-top: 4px; }
+        .prompt-heading { display: block; margin-top: 40px; }
+        .prompt-heading p { margin-top: 7px; }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -408,6 +421,10 @@
               <article class="material"><span class="material-icon">PDF</span><h3>강의자료 PDF</h3><p>강의 내용과 실습 순서, 주요 프롬프트를 정리한 교육생용 자료입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
             </div>
 
+            <div class="prompt-heading">
+              <h3>실습 프롬프트</h3>
+              <p>프롬프트가 준비되면 각 항목의 버튼으로 바로 복사할 수 있습니다.</p>
+            </div>
             <div class="prompt-preview" aria-label="복사용 실습 프롬프트 준비 목록">
               <div class="prompt-row"><span class="prompt-index">P-01</span><div><h3>데이터 구조와 품질 확인</h3><p>열의 의미, 누락값, 중복값과 형식 오류를 확인하는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
               <div class="prompt-row"><span class="prompt-index">P-02</span><div><h3>핵심 지표와 패턴 분석</h3><p>업무 질문으로 중요한 수치와 변화의 원인을 찾는 프롬프트</p></div><button class="pending" type="button" disabled>준비 중</button></div>
