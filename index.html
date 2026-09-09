@@ -234,7 +234,7 @@
       .lesson p { margin: 0; color: var(--brown); font-size: 12px; line-height: 1.5; }
       .lesson.current p { color: #d7cbc5; }
 
-      .materials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+      .materials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
 
       .material {
         display: flex;
@@ -404,9 +404,8 @@
             </div>
 
             <div class="materials">
-              <article class="material"><span class="material-icon">XLSX</span><h3>예제 엑셀 파일</h3><p>데이터 구조 확인과 기초 분석에 사용할 실습용 원본 파일입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
-              <article class="material"><span class="material-icon">CSV</span><h3>예제 CSV 파일</h3><p>AI 도구에 업로드해 정리와 분석 과정을 연습할 표 형식 데이터입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
-              <article class="material"><span class="material-icon">PDF</span><h3>4강 실습 안내서</h3><p>실습 순서, 주의사항과 결과 검증 방법을 담을 수강생용 안내서입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+              <article class="material"><span class="material-icon">XLSX</span><h3>실습용 엑셀 파일</h3><p>데이터 구조 확인부터 분석과 시각화까지 함께 진행할 실습용 원본 파일입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
+              <article class="material"><span class="material-icon">PDF</span><h3>강의자료 PDF</h3><p>강의 내용과 실습 순서, 주요 프롬프트를 정리한 교육생용 자료입니다.</p><button class="pending" type="button" disabled>자료 준비 중</button></article>
             </div>
 
             <div class="prompt-preview" aria-label="복사용 실습 프롬프트 준비 목록">
